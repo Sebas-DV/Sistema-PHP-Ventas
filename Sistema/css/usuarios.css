@@ -1,0 +1,84 @@
+#container{
+  padding: 90px 15px 15px;
+  margin-top: -50px;
+}
+.form-r{
+  width: 500px;
+  margin: auto;
+}
+.lista-f{
+  width: 80%;
+  margin: auto;
+}
+label{
+  display: block;
+  font-size: 12pt;
+  margin: 15px auto 5px auto;
+}
+hr{
+  border: 1px solid gray;
+  width: 100%;
+  display: block;
+  margin: 10px 0;
+}
+form{
+  margin: auto;
+  padding: 20px 50px;
+  border: 1px solid gray;
+}
+input, select{
+  display: block;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.btn-submit{
+  padding: 10px;
+  background-color: #12a4c6;
+  color: white;
+  letter-spacing: 1px;
+  border: none;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+table{
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid gray;
+
+}
+table th{
+  text-align: left;
+  padding: 10px;
+  background-color: #56ba50;
+  color: white;
+  border: 1px solid gray;
+}
+table td{
+  padding: 10px;
+  border: 1px solid gray;
+}
+.eliminar-btn, .btn-ok{
+  width: 124px;
+  background-color: #478ba2;
+  color: white;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 15px;
+  text-decoration: none;
+  border: none;
+}
+.formulario{
+  text-align: center;
+}
+.ban{
+  text-align: center;
+  color: white;
+  background-color: #0041a0;
+  padding: 50px;
+}
+.s-t{
+  font-size: 35px;
+}

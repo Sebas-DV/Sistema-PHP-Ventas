@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Sistema</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/usuarios.css">
+</head>
+<body>
+  <div class="ban">
+    <h3 class="s-t">Sistema De Ventas y Facturacion</h3>
+  </div>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">PANEL ADMINISTRADOR</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav">
+          <li class=""><a href="index.php">Inicio</a></li>
+
+          <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Usuarios
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="crear-usuarios.php">Crear Usuarios</a></li>
+            <li><a href="crear-tipo-usuarios.php">Crear Tipo Usuarios</a></li>
+            <li><a href="lista-usuarios.php">(Actualizar | Eliminar) Usuarios</a></li>
+            <li><a href="lista-tipo-usuarios.php">(Actualizar | Eliminar) Tipo Usuarios</a></li>
+          </ul>
+          </li>
+
+          <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Clientes
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="crear-cliente.php">Crear Cliente</a></li>
+            <li><a href="lista-clientes.php">(Actualizar | Eliminar) Clientes</a></li>
+          </ul>
+          </li>
+
+          <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Proveedores
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="crear-proveedor.php">Crear Proveedor</a></li>
+            <li><a href="lista-proveedores.php">(Actualizar | Eliminar) Proveedores</a></li>
+          </ul>
+          </li>
+
+          <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Productos
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="crear-producto.php">Crear Producto</a></li>
+            <li><a href="lista-productos.php">(Actualizar | Eliminar) Productos</a></li>
+          </ul>
+          </li>
+
+          <li class="dropdown active">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Facturas
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="crear-facturas.php">Crear Factura</a></li>
+            <li><a href="lista-facturas.php">Lista de Facturas</a></li>
+          </ul>
+          </li>
+        </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="../php/salir.php"><span class="glyphicon glyphicon-log-in"></span>    Salir</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="container">
+    <div class="lista-f">
+      <h3>Reporteria</h3>
+      <hr>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Proveedor</th>
+          <th>Opciones</th>
+        </tr>
+        <?php
+            $conexion = mysqli_connect("localhost", "root", "", "Tienda");
+
+            $query = mysqli_query($conexion, "SELECT f.id_factura, r.nombre,r.apellido, p.nombre_producto, t.nombre, t.apellido
+											                        FROM facturadora f
+                                              INNER JOIN cliente r ON f.id_cliente = r.id_cliente
+                                              INNER JOIN productos p ON f.id_producto = p.id_producto
+                                              INNER JOIN proveedor t ON f.id_proveedor = t.id_proveedor");
+
+
+            $result = mysqli_num_rows($query);
+
+            if($result > 0 )
+            {
+              while ($data = mysqli_fetch_array($query))
+              {
+            ?>
+              <tr>
+                <td><?php echo $data['id_factura']; ?></td>
+                <td><?php echo $data['nombre_producto']; ?></td>
+                <td><?php echo $data['nombre']." ".$data['apellido']; ?></td>
+                <td>
+                  <a href="ver-factura.php?id=<?php echo $data['id_factura']; ?>">Ver Factura</a>
+                </td>
+              </tr>
+              <?php
+                }
+              }
+              ?>
+      </table>
+    </div>
+  </section>
+</body>
+</html>
